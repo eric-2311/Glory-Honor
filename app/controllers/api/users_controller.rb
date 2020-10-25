@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
     #Finding a user by email
     def email
         #Creating a user instance vairable from params entered by user
-        @user = User.find_by(email: params[:email])
+        @user = User.find_by(username: params[:username])
 
         #Return a JSON object based on query
         @user ? (render json: @user) : (render json: 'null')
@@ -32,7 +32,7 @@ class Api::UsersController < ApplicationController
     private
     #Permitted user params to protect users from updating sensitive model attributes
     def user_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name)
+        params.require(:user).permit(:username, :password)
     end
 
 end
